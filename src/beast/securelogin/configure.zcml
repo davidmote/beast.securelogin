@@ -6,6 +6,12 @@
     i18n_domain="beast.securelogin">
 
   <includeDependencies package="." />
+<include package="plone.resource" file="meta.zcml"/>
+
+<plone:static
+  directory="static"
+  type="template"
+  />
 
   <genericsetup:registerProfile
       name="default"

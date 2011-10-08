@@ -28,6 +28,7 @@ setup(name='beast.securelogin',
       zip_safe=False,
       install_requires=[
           'setuptools',
+          'plone.resource',
           # -*- Extra requirements: -*-
       ],
       extras_require={'test': ['plone.app.testing']},
