@@ -28,8 +28,10 @@
                         came_from request/came_from|request/HTTP_REFERER|nothing;
                         came_from_template_id python:came_from and context.plone_utils.urlparse(came_from)[2].split('/')[-1];
                         came_from python:test(came_from is not None and isURLInPortal(came_from) and came_from_template_id not in login_template_ids, came_from, None);
+
                         next request/next|nothing;
                         next python:test(next is not None and isURLInPortal(next), next, None);
+
                         errors options/state/getErrors;
                         ac_name auth/name_cookie|string:__ac_name;
                         ac_password auth/pw_cookie|string:__ac_password;
@@ -39,8 +41,10 @@
                         site_properties context/portal_properties/site_properties;
                         use_email_as_login site_properties/use_email_as_login|nothing;
                         external_login_https site_properties/external_login_https|nothing;
-                        external_https = python:external_login_https and context.portal_url.replace('http://','https://') != context.portal_url and context.portal_url.replace('http://','https://') or None;
-                        external_login_url site_properties/external_login_url|external_https|nothing;
+                        next python:next is not None and external_login_https and next.replace('http://','https://') or next;
+                        https_url python:context.portal_url().replace('http://','https://');
+                        external_https python:external_login_https and https_url != context.portal_url() and https_url + '/login_form' or None;
+                        external_login_url external_https|site_properties/external_login_url|nothing;
                         external_login_iframe site_properties/external_login_iframe|nothing;
                         mail_password python:test(checkPermission('Mail forgotten password', context), portal_url + '/mail_password_form', '');
                         mail_password_url request/mail_password_url|nothing;
@@ -51,12 +55,14 @@
                         join_url request/join_url|nothing;
                         join_url python:test(join_url is not None and isURLInPortal(join_url), join_url, join);
                         use_normal python:auth and not external_login_url;
-                        use_iframe python:auth and external_login_url and external_login_iframe;
+                        in_iframe python:request.has_key('in_iframe') and request['in_iframe'] or None;
+                        use_iframe python:auth and external_login_url and external_login_iframe and not in_iframe;
                         use_external python:auth and external_login_url and not external_login_iframe;
                         target request/target|nothing;
                         target python:test(target in ('_parent', '_top', '_blank', '_self'), target, None);
                         ztu modules/ZTUtils;">
 
+         
             <dl class="portalMessage error"
                 id="enable_cookies_message"
                 style="display:none">
@@ -243,7 +249,7 @@
                   id="login_form"
                   name="login_form"
                   class="iframe-wrapper"
-                  tal:define="params python:dict(next=request.URL1+'/logged_in', target='_parent', ajax_load=True, ajax_include_head=True, mail_password_url=mail_password, join_url=join);
+                  tal:define="params python:dict(next=request.URL1+'/logged_in', target='_parent', ajax_load=True, ajax_include_head=True, mail_password_url=mail_password, join_url=join, in_iframe=True);
                               dummy python:came_from and params.update(dict(came_from=came_from));
                               src external_login_url"
                   tal:attributes="action src">
