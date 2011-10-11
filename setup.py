@@ -29,6 +29,7 @@ setup(name='beast.securelogin',
       install_requires=[
           'setuptools',
           'plone.resource',
+          'z3c.jbot',
           # -*- Extra requirements: -*-
       ],
       extras_require={'test': ['plone.app.testing']},
