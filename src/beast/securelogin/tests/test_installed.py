@@ -15,7 +15,7 @@ class TestInstalled(unittest.TestCase):
         self.app = self.layer['app']
         self.portal = self.layer['portal']
         self.qi_tool = getToolByName(self.portal, 'portal_quickinstaller')
-        self.resource_path = "++template++beast.securelogin"
+        self.resource_path = "++theme++beast.securelogin"
 
     def test_product_is_installed(self):
         """ Validate that our products GS profile has been run and the product 
@@ -28,12 +28,10 @@ class TestInstalled(unittest.TestCase):
 
     def test_css_registry_configured(self):
         cssRegistry = getToolByName(self.portal, 'portal_css')
-        css_dir = "css"
-
         css_files = ['login.css',
                     ]
         for file in css_files:
-            self.assertTrue("%s/%s/%s" % (self.resource_path, css_dir, file)
+            self.assertTrue("%s/%s" % (self.resource_path, file)
                         in cssRegistry.getResourceIds()
                     )
 
