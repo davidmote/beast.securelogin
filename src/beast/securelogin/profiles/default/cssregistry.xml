@@ -7,7 +7,7 @@
  <stylesheet title="" authenticated="False" cacheable="True"
     compression="safe" conditionalcomment="" cookable="True" enabled="on"
     expression=""
-    id="++template++beast.securelogin/css/login.css" media="" rel="stylesheet"
+    id="++teheme++beast.securelogin/login.css" media="" rel="stylesheet"
     rendering="link"
     applyPrefix="True"
     />

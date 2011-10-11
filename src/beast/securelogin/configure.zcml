@@ -9,10 +9,15 @@
   <includeDependencies package="." />
   <include package="plone.resource" file="meta.zcml"/>
 
-<plone:static
-  directory="static"
-  type="template"
-  />
+  <plone:static
+    directory="static/css"
+    type="theme"
+    />
+
+  <plone:static
+    directory="static/templates"
+    type="resource"
+    />
 
   <genericsetup:registerProfile
       name="default"
