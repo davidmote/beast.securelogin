@@ -1,0 +1,32 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:five="http://namespaces.zope.org/five"
+    xmlns:browser="http://namespaces.zope.org/browser"
+    xmlns:i18n="http://namespaces.zope.org/i18n"
+    xmlns:genericsetup="http://namespaces.zope.org/genericsetup"
+    xmlns:plone="http://namespaces.plone.org/plone"
+    i18n_domain="beast.securelogin">
+
+  <includeDependencies package="." />
+  <include package="plone.resource" file="meta.zcml"/>
+  <include package="z3c.jbot" file="meta.zcml" />
+
+
+  <browser:jbot
+    directory="static/templates"  />
+
+  <plone:static
+    directory="static/css"
+    type="theme"
+    />
+
+  <genericsetup:registerProfile
+      name="default"
+      title="beast.securelogin"
+      directory="profiles/default"
+      description="Installs the beast.securelogin package"
+      provides="Products.GenericSetup.interfaces.EXTENSION"
+      />
+  <!-- -*- extra stuff goes here -*- -->
+  
+</configure>
