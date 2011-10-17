@@ -1,11 +1,16 @@
 /* css for login screen */
 
+html body.template-login_form {
+    background-image: none !important;
+}
+
 #login-form-iframe, #iframe-wrapper {
     overflow:visible; 
-    height:250px;
+    height:300px;
     border: 0 none;
     box-shadow: 0 0 0 0;
     padding: 20px;
+    width:95%;
 }
 
 #fieldset-openid-login label, #login-form label {
