@@ -1,8 +1,12 @@
 /* css for login screen */
 
-html body.template-login_form {
+html body.template-login_form,
+html body.template-login_failed {
     background-image: none !important;
 }
+
+div.overlaybg div.close, div.overlay div.close {
+    background-image: url("/++theme++beast.securelogin/pb_close.png");
 
 #login-form-iframe, #iframe-wrapper {
     overflow:visible; 
