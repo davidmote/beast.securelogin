@@ -7,7 +7,7 @@ html body.template-login_failed {
 
 div.overlaybg div.close, div.overlay div.close {
     background-image: url("/++theme++beast.securelogin/pb_close.png");
-
+}
 #login-form-iframe, #iframe-wrapper {
     overflow:visible; 
     height:300px;
