@@ -7,5 +7,5 @@ validators=login_form_validate
 
 [actions]
 action.success=traverse_to:string:logged_in
-action.failure=redirect_to:string:login_form
-action.failure_page=traverse_to:string:login_failed
+action.failure=traverse_to:string:login_form
+action.failure_page=traverse_to:string:login_form
